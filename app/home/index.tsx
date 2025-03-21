@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 
 import {
   Alert,
@@ -11,14 +11,14 @@ import {
   TextInput,
   View,
 } from "react-native";
-import TodoListItem from "./components/todo_list_item";
+import TodoListItem from "../components/todo_list_item";
 
 import { useEffect, useState } from "react";
 import { Image } from "expo-image";
 import * as SQLite from "expo-sqlite";
-import { TodoList } from "./model/todo-model";
+import { TodoList } from "../model/todo-model";
 
-export default function Index() {
+export default function Home() {
   const createTwoButtonAlert = () =>
     Alert.alert("Empty field", "Enter task", [
       // {
@@ -203,11 +203,13 @@ export default function Index() {
               }}
             >
               <Image
-                source={require("../assets/images/ant-design_plus-outlined.png")}
+                source={require("../../assets/images/ant-design_plus-outlined.png")}
                 style={{ width: 32, height: 32 }}
               ></Image>
             </View>
           </Pressable>
+
+          <Link href={"/login"}>Login</Link>
         </View>
       </View>
     </KeyboardAvoidingView>

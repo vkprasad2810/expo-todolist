@@ -1,6 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { TodoList } from "../model/todo-model";
+import { useTheme } from "../context/theme-context";
 
 export default function TodoListItem({
   item,
