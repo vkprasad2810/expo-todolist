@@ -5,14 +5,15 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "todolist",
     "userInterfaceStyle": "automatic",
-    "entryPoint": "app/home/index.tsx",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.vkprasad.todolist"
+      "bundleIdentifier": "com.vkprasad.todolist",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -27,7 +28,6 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
@@ -38,12 +38,15 @@
         }
       ],
       "expo-sqlite",
-      [
-        "@react-native-google-signin/google-signin"
-      ]
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ced72627-a277-4ec1-9c31-295f8ce23dc4"
+      }
     }
   }
 }

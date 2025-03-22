@@ -40,9 +40,9 @@ export default function Index() {
         console.log("init");
         const db = await SQLite.openDatabaseAsync("todos");
 
-        await db.execAsync(`
-        CREATE TABLE IF NOT EXISTS todo (id INTEGER PRIMARY KEY NOT NULL, text TEXT NOT NULL, isCompleted INTEGER);
-        `);
+        await db.execAsync(
+          `CREATE TABLE IF NOT EXISTS todo (id INTEGER PRIMARY KEY NOT NULL, text TEXT NOT NULL, isCompleted INTEGER);`
+        );
       } catch (error) {
         console.log("init error - " + error);
       }
@@ -98,7 +98,6 @@ export default function Index() {
   const updateTask = async (task: TodoList, id: number) => {
     try {
       const db = await SQLite.openDatabaseAsync("todos");
-
       console.log("task.isCompleted - " + task.isCompleted);
 
       const result = await db.runAsync(
@@ -114,7 +113,6 @@ export default function Index() {
 
   const onItemClick = (task: TodoList) => {
     task.isCompleted = !task.isCompleted;
-
     updateTask(task, task.id);
   };
 

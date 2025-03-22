@@ -1,18 +1,15 @@
 import { Link, Stack } from "expo-router";
-
 import {
   Alert,
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
   View,
 } from "react-native";
 import TodoListItem from "../components/todo_list_item";
-
 import { useEffect, useState } from "react";
 import { Image } from "expo-image";
 import * as SQLite from "expo-sqlite";

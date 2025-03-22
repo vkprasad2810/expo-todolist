@@ -1,10 +1,10 @@
-import { Link, Stack } from "expo-router";
-import React, { useContext } from "react";
-import { Button, Pressable, Text, View } from "react-native";
-import Register from "../register";
+import { Stack } from "expo-router";
+import React, { useEffect } from "react";
+import { Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { Image } from "expo-image";
-import { useAuth } from "@/context/auth-context";
+import { config, useAuth } from "@/context/auth-context";
+import * as Google from "expo-auth-session/providers/google";
 
 export default function Login() {
   const router = useRouter();
@@ -14,6 +14,25 @@ export default function Login() {
   };
 
   const { login } = useAuth();
+  const [request, response, promptAsync] = Google.useAuthRequest(config);
+
+  const handleSignIn = () => {
+    console.log("error - " + response?.type);
+
+    if (response?.type === "success") {
+      const { authentication } = response;
+      const token = authentication?.accessToken;
+      console.log("access token : " + token);
+      login();
+      // const auth = getAuth();
+      // const credential = GoogleAuthProvider.credential(id_token);
+      // signInWithCredential(auth, credential);
+    }
+  };
+
+  useEffect(() => {
+    handleSignIn();
+  }, [response]);
 
   return (
     <View style={{ width: "100%", height: "100%", backgroundColor: "#171820" }}>
@@ -83,7 +102,10 @@ export default function Login() {
             flexDirection: "row",
             gap: 12,
           }}
-          onPress={() => login()}
+          onPress={() => {
+            promptAsync();
+            console.log("click");
+          }}
         >
           <Image
             contentFit="contain"
